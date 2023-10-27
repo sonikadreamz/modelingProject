@@ -4,6 +4,21 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-77WW667M8W"></script>
 <script>
+  var sendDate = (new Date()).getTime();
+
+$.ajax({
+    //type: "GET", //with response body
+    type: "HEAD", //only headers
+    url: "/deft-kleicha-0ce933.netlify.app/",
+    success: function(){
+
+        var receiveDate = (new Date()).getTime();
+
+        var responseTimeMs = receiveDate - sendDate;
+        console.write("receiveDate "+receiveDate+"responseTimeMs "+responseTimeMs);
+
+    }
+});
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
