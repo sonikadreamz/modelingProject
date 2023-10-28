@@ -1,55 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic Table with Request and Response Times</title>
+    <title>Website Response Time</title>
 </head>
 <body>
-    <button onclick="updateTimesFromAPI()">Update Times from API</button>
-    <table id="data-table">
-        <thead>
-            <tr>
-                <th>Request Time</th>
-                <th>Response Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table data will be added dynamically here -->
-        </tbody>
-    </table>
+    <button onclick="measureResponseTime()">Measure Response Time</button>
+    <p id="responseTime"></p>
 
     <script>
-        function updateTimesFromAPI() {
-            // Replace this URL with your API endpoint
-            const apiUrl = 'https://main--modelingproj.netlify.app/';
-
-            // Function to fetch data from the API and update the table
-            function fetchDataAndUpdateTable() {
-                fetch(apiUrl)
-                    .then(response => response.json()) // Assuming the API returns JSON data
-                    .then(data => {
-                        // Extract request and response times from API data
-                        const requestTime = data.requestTime;
-                        const responseTime = data.responseTime;
-
-                        // Create a new row for the table
-                        const table = document.getElementById("data-table");
-                        const tbody = table.getElementsByTagName("tbody")[0];
-                        const newRow = tbody.insertRow(0); // Add the new row at the top
-                         console.log(requestTime);
-                        console.log(responseTime);
-                        // Add cells with request and response times to the new row
-                        const requestCell = newRow.insertCell(0);
-                        const responseCell = newRow.insertCell(1);
-                        requestCell.innerHTML = requestTime;
-                        responseCell.innerHTML = responseTime;
-                    })
-                    .catch(error => {
-                        console.error("Error fetching data from the API:", error);
-                    });
-            }
-
-            // Call fetchDataAndUpdateTable every second (1000 milliseconds)
-            setInterval(fetchDataAndUpdateTable, 10000);
+        function measureResponseTime() {
+            const startTime = performance.now(); // Start measuring time
+            fetch('https://main--modelingproj.netlify.app/') // Replace with the website URL you want to test
+                .then(response => {
+                    const endTime = performance.now(); // Stop measuring time
+                    const responseTime = endTime - startTime; // Calculate response time in milliseconds
+                    document.getElementById('responseTime').innerHTML = `Response Time: ${responseTime} ms`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 </body>
