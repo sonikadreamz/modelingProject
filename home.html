@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table with Request and Response Times</title>
+</head>
+<body>
+    <button onclick="updateTimesFromAPI()">Update Times from API</button>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Request Time</th>
+                <th>Response Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table data will be added dynamically here -->
+        </tbody>
+    </table>
+
+    <script>
+        function updateTimesFromAPI() {
+            // Replace this URL with your API endpoint
+            const apiUrl = 'https://example.com/api/data';
+
+            // Function to fetch data from the API and update the table
+            function fetchDataAndUpdateTable() {
+                fetch(apiUrl)
+                    .then(response => response.json()) // Assuming the API returns JSON data
+                    .then(data => {
+                        // Extract request and response times from API data
+                        const requestTime = data.requestTime;
+                        const responseTime = data.responseTime;
+
+                        // Create a new row for the table
+                        const table = document.getElementById("data-table");
+                        const tbody = table.getElementsByTagName("tbody")[0];
+                        const newRow = tbody.insertRow(0); // Add the new row at the top
+
+                        // Add cells with request and response times to the new row
+                        const requestCell = newRow.insertCell(0);
+                        const responseCell = newRow.insertCell(1);
+                        requestCell.innerHTML = requestTime;
+                        responseCell.innerHTML = responseTime;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data from the API:", error);
+                    });
+            }
+
+            // Call fetchDataAndUpdateTable every second (1000 milliseconds)
+            setInterval(fetchDataAndUpdateTable, 1000);
+        }
+    </script>
+</body>
+</html>
