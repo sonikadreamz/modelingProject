@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/random-js@1.0.8/dist/random.js"></script>
     <script>
         function simulateArrivals() {
-            const meanArrivalRate = 5; // Adjust the mean arrival rate as needed
+            const meanArrivalRate = 1; // Adjust the mean arrival rate as needed
             const random = require('random-js')(); // Initialize random-js
 
             // Function to generate Poisson-distributed arrivals
@@ -32,7 +32,7 @@
     </script>
 </head>
 <body>
-    <button onclick="measureResponseTime()">Measure Response Time</button>
+   
     <p id="responseTime"></p>
     <p id="arrivalTime"> </p>
 
