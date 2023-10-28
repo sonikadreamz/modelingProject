@@ -35,7 +35,8 @@
                         const table = document.getElementById("data-table");
                         const tbody = table.getElementsByTagName("tbody")[0];
                         const newRow = tbody.insertRow(0); // Add the new row at the top
-
+                         console.log(requestTime);
+                        console.log(responseTime);
                         // Add cells with request and response times to the new row
                         const requestCell = newRow.insertCell(0);
                         const responseCell = newRow.insertCell(1);
