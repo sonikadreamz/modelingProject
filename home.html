@@ -25,6 +25,7 @@
             const numSimulations = 10; // Number of simulations
             for (let i = 0; i < numSimulations; i++) {
                 const arrivals = generatePoissonArrivals(meanArrivalRate);
+                setTimeout(measureResponseTime, arrivals);
                 console.log(`Simulation ${i + 1}: ${arrivals} arrivals`);
             }
         }
