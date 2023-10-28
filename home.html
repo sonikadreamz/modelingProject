@@ -2,6 +2,33 @@
 <html>
 <head>
     <title>Website Response Time</title>
+    <button onclick="simulateArrivals()">Simulate Arrivals</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/random-js@1.0.8/dist/random.js"></script>
+    <script>
+        function simulateArrivals() {
+            const meanArrivalRate = 5; // Adjust the mean arrival rate as needed
+            const random = require('random-js')(); // Initialize random-js
+
+            // Function to generate Poisson-distributed arrivals
+            function generatePoissonArrivals(lambda) {
+                const u = Math.random();
+                let k = 0;
+                let p = 1;
+                while (u > p) {
+                    k++;
+                    p *= Math.random();
+                }
+                return k;
+            }
+
+            const numSimulations = 10; // Number of simulations
+            for (let i = 0; i < numSimulations; i++) {
+                const arrivals = generatePoissonArrivals(meanArrivalRate);
+                console.log(`Simulation ${i + 1}: ${arrivals} arrivals`);
+            }
+        }
+    </script>
 </head>
 <body>
     <button onclick="measureResponseTime()">Measure Response Time</button>
