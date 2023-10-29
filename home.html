@@ -5,7 +5,7 @@
     <script>
         function simulateArrivals() {
             const meanArrivalRate = 1; // Adjust the mean arrival rate as needed
-             const totalresponse=1;
+             
             // Function to generate Poisson-distributed arrivals
             function generatePoissonArrivals(lambda) {
                 const u = Math.random();
@@ -29,6 +29,7 @@
     
   
     <script>
+   
         function simulateArrivals1() {
           
                 const u = Math.random();
@@ -57,7 +58,7 @@
                 .then(response => {
                     const endTime = performance.now(); // Stop measuring time
                     const responseTime = endTime - startTime; // Calculate response time in milliseconds
-                    totalresponse=totalresponse+responseTime;
+                    const totalresponse= totalresponse + responseTime;
                     document.getElementById('responseTime').innerHTML += `Response Time: ${responseTime} ms`;
                      document.getElementById('arrivalTime').innerHTML += `Arrival Time: ${startTime} ms`;
                      document.getElementById('AvgresponseTime').innerHTML=totalresponse;
