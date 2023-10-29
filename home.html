@@ -58,7 +58,7 @@
                 .then(response => {
                     const endTime = performance.now(); // Stop measuring time
                     const responseTime = endTime - startTime; // Calculate response time in milliseconds
-                    const totalresponse= totalresponse + responseTime;
+                    let totalresponse= totalresponse + responseTime;
                     document.getElementById('responseTime').innerHTML += `Response Time: ${responseTime} ms`;
                      document.getElementById('arrivalTime').innerHTML += `Arrival Time: ${startTime} ms`;
                      document.getElementById('AvgresponseTime').innerHTML=totalresponse;
