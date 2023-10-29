@@ -2,9 +2,6 @@
 <html>
 <head>
     <title>Website Response Time</title>
-    
-    
-  
     <script>
         function simulateArrivals() {
             const meanArrivalRate = 1; // Adjust the mean arrival rate as needed
@@ -29,9 +26,25 @@
             }
         }
     </script>
+    
+  
+    <script>
+        function simulateArrivals1() {
+          
+                const u = Math.random();
+             
+            const numSimulations = 10; // Number of simulations
+            for (let i = 0; i < numSimulations; i++) {
+               
+                setTimeout(measureResponseTime, u);
+              
+            }
+        }
+    </script>
 </head>
 <body>
-   <button onclick="simulateArrivals()">Simulate Arrivals</button>
+   <button onclick="simulateArrivals()">Simulate Arrivals poisson</button>
+    <button onclick="simulateArrivals()">Simulate Arrivals random</button>
     <p id="responseTime"></p>
     <p id="arrivalTime"> </p>
 
@@ -51,5 +64,6 @@
                 });
         }
     </script>
+    
 </body>
 </html>
