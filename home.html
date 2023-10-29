@@ -44,9 +44,11 @@
 </head>
 <body>
    <button onclick="simulateArrivals()">Simulate Arrivals poisson</button>
-    <button onclick="simulateArrivals()">Simulate Arrivals random</button>
+    <button onclick="simulateArrivals1()">Simulate Arrivals random</button>
     <p id="responseTime"></p>
     <p id="arrivalTime"> </p>
+    <p id="AvgresponseTime"></p>
+    <p id="AvgarrivalTime"> </p>
 
     <script>
         function measureResponseTime() {
@@ -55,8 +57,10 @@
                 .then(response => {
                     const endTime = performance.now(); // Stop measuring time
                     const responseTime = endTime - startTime; // Calculate response time in milliseconds
+                    const totalresponse+=responseTime;
                     document.getElementById('responseTime').innerHTML += `Response Time: ${responseTime} ms`;
                      document.getElementById('arrivalTime').innerHTML += `Arrival Time: ${startTime} ms`;
+                     document.getElementById('AvgresponseTime').innerHTML=totalresponse;
                     
                 })
                 .catch(error => {
