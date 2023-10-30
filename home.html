@@ -2,18 +2,78 @@
 <html>
 <head>
     <title>Website Response Time</title>
+<div style="width: 80%;">
+        <canvas id="myLineChart" width="400" height="200"></canvas>
+    </div>
+    <button onclick="addDataPoint()">Add Data Point</button>
+
+    <script>
+        // Initialize empty arrays for data
+        const labels = [];
+        const data = [];
+        let chart;
+
+        // Function to add data points
+        function addDataPoint() {
+            const x = labels.length; // X value is the index
+            const y = Math.random() * 100; // Generating a random Y value (0 to 100 in this example)
+
+            labels.push(x);
+            data.push(y);
+
+            // If the chart is already created, update it
+            if (chart) {
+                chart.update();
+            } else {
+                // Create the chart when there is data
+                createChart();
+            }
+        }
+
+        // Function to create the chart
+        function createChart() {
+            const ctx = document.getElementById('myLineChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Dynamic Line Chart',
+                        data: data,
+                        borderColor: 'blue',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+    
     <script>
         function simulateArrivals() {
             const meanArrivalRate = 0.1; // Adjust the mean arrival rate as needed
              
             // Function to generate Poisson-distributed arrivals
             function generatePoissonArrivals(lambda) {
-                const u = Math.random();
+                //const u = Math.random();
+                const u = getRandomNumber(1, 10*meanArrivalRate);
                 let k = 0;
                 let p = 1;
                 while (u > p) {
                     k++;
-                    p *= Math.random();
+                   // p *= Math.random();
+                    p *=getRandomNumber(1, 10*meanArrivalRate);
                 }
                 return k;
             }
