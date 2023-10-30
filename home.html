@@ -64,17 +64,19 @@
     <script>
         function simulateArrivals() {
             const meanArrivalRate = 0.1; // Adjust the mean arrival rate as needed
-             
+             const max=10;
+            const min=0;
             // Function to generate Poisson-distributed arrivals
             function generatePoissonArrivals(lambda) {
                 //const u = Math.random();
-                const u = getRandomNumber(1, 10*meanArrivalRate);
+                const u= Math.random() * (max - min) + min;
+               // const u = getRandomNumber(1, 10*meanArrivalRate);
                 let k = 0;
                 let p = 1;
                 while (u > p) {
                     k++;
                    // p *= Math.random();
-                    p *=getRandomNumber(1, 10*meanArrivalRate);
+                    p *=Math.random()*(max-min)+min; 
                 }
                 return k;
             }
