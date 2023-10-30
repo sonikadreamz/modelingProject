@@ -115,7 +115,7 @@
     <p id="AvgarrivalTime"> </p>
 
     <script>
-         let totalresponse=0;
+         let totalresponse=0;let totalarrival=0;
         function measureResponseTime() {
             const startTime = performance.now(); // Start measuring time
             fetch('https://main--modelingproj.netlify.app/') // Replace with the website URL you want to test
@@ -123,11 +123,13 @@
                     const endTime = performance.now(); // Stop measuring time
                     const responseTime = endTime - startTime; // Calculate response time in milliseconds
                      totalresponse= totalresponse + responseTime;
+                    totalarrival=totalarrival + startTime;
                     document.getElementById('responseTime').innerHTML += `Response Time: ${responseTime} ms`;
                     labels.push(startTime);
                     data.push(responseTime);
                      document.getElementById('arrivalTime').innerHTML += `Arrival Time: ${startTime} ms`;
                      document.getElementById('AvgresponseTime').innerHTML=totalresponse;
+                    document.getElementById('AvgarrivalTime').innerHTML=totalarrival;
                     
                 })
                 .catch(error => {
