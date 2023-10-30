@@ -10,8 +10,8 @@
 
     <script>
         // Initialize empty arrays for data
-        const labels = [1,2,3];
-        const data = [11,12,13];
+        const labels = [];
+        const data = [];
         let chart;
 
         // Function to add data points
@@ -122,6 +122,8 @@
                     const responseTime = endTime - startTime; // Calculate response time in milliseconds
                      totalresponse= totalresponse + responseTime;
                     document.getElementById('responseTime').innerHTML += `Response Time: ${responseTime} ms`;
+                    labels.push(startTime);
+                    data.push(responseTime);
                      document.getElementById('arrivalTime').innerHTML += `Arrival Time: ${startTime} ms`;
                      document.getElementById('AvgresponseTime').innerHTML=totalresponse;
                     
